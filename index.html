@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
+ <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Gemunu+Libre">
+<style>
+body{
+background-color:#000;
+  font-family: 'Gemunu Libre', serif;
+  font-size:20px;
+}
+.rocket {
+  position:absolute;
+  left: 140px;
+  top:30%;
+  display:none;
+ 
+}
+.fire{
+  position:relative;
+  top:-20px;
+    left: -310px;
+  
+}
+
+.star{
+background-color:#ffffff;
+position:absolute;
+
+}
+
+
+.panel{
+  position:absolute;
+  left: 10px;
+  top:10px;
+  color:#ffffff;
+}
+
+.apaksa{
+color:#ffffff;
+position:absolute;
+width:100%;
+bottom:20px;
+}
+
+
+.starts{
+
+color:#ffffff;
+height:10%;
+  width: 60%;
+  margin: 0 auto;
+  border-style: dotted;
+  border-color:#ffffff;
+  border-size:2px;
+  text-align:center;
+  padding:40px;
+}
+</style>
+   
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJEJ7S9NH8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WJEJ7S9NH8');
+</script>
+<script>
+var myvar1,myvar2;
+
+//starsetup
+function vienreiz(i,start){
+
+//for (var i = 1; i < 4; i++) {
+
+x = Math.round(Math.random() * (90 - 1) + 1);
+if(start==0){x=99;}
+y = Math.round(Math.random() * (90 - 1) + 1);
+document.getElementById("star"+i).style="left:"+x+"%; top:"+y+"%; position:absolute;";
+
+
+
+//alert("a"+x+" i:"+i);
+//}
+}
+
+
+function firef(){
+//rocket
+x = Math.round(Math.random() * (3 - 1) + 1);
+
+if(x==1){document.getElementById("fire").src = "fire1.png";}
+if(x==2){document.getElementById("fire").src = "fire2.png";}
+if(x==3){document.getElementById("fire").src = "fire3.png";}
+
+document.getElementById("rocket").style='padding-top:'+(x/2)+'px';
+document.getElementById("rocket").style='opacity:'+(1-(x/20))+'';
+
+
+//star move
+
+for (var i = 1; i < 11; i++) {
+var x=document.getElementById("star"+i).style.left;
+var top=document.getElementById("star"+i).style.top;
+//alert("t"+top);
+var x = x.substring(0, x.length - 1);
+x2=parseInt(x);
+top2=parseInt(top);
+document.getElementById("star"+i).style="left:"+(x2-1)+"%; top:"+top2+"%;";
+if(x2<1){vienreiz(i,0);}
+}
+
+///////////////
+
+
+//vienreiz();
+}
+
+
+function secondsToDhms(seconds) {
+seconds = Number(seconds);
+var d = Math.floor(seconds / (3600*24));
+var h = Math.floor(seconds % (3600*24) / 3600);
+var m = Math.floor(seconds % 3600 / 60);
+var s = Math.floor(seconds % 60);
+
+var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+return dDisplay + hDisplay + mDisplay + sDisplay;
+}
+
+var sek=0;//18143997;
+//var sek=18143997;
+function sekundes(){
+//7month
+//60secx60min=1h=3600sec
+//3600x24=86,400=1day
+//x30 dienas = 2,592,000
+//x 7 men = 18,144,000
+
+kopa=18144000;
+
+
+//tik vienaa sek nobrauc 16.53439153439153 judzes
+
+atrums=300000000/kopa; //sekundee
+nolidoja=Math.floor(sek*atrums);
+
+var win="";
+if(sek==18144000){
+est=0;
+completed="210 days";
+ clearInterval(myvar1);
+  clearInterval(myvar2);
+  document.body.style.backgroundColor = "#ed9815";
+  
+  
+  document.getElementById("fire").style="left:-500px;"
+  win="<h1>MISSION TO MARS COMPLETED!</h1>";
+}else{
+sek=sek+1;
+est=secondsToDhms(kopa-sek);
+completed=secondsToDhms(sek);
+}
+
+
+document.getElementById("panel").innerHTML="Completed: "+completed+"<br>Estimated: "+est+"<br>Total Distance to Mars: 300,000,000 miles<br>Distance Traveled: "+nolidoja.toLocaleString()+" miles<br>Estimated: "+(300000000-nolidoja).toLocaleString()+" miles"+win;
+
+}
+</script>
+
+</head>
+<body>
+<div style="width:100%;height:100%;">
+
+
+
+
+<img src='star.png' id=star1 class=star>
+<img src='star.png' id=star2 class=star>
+<img src='star.png' id=star3 class=star>
+<img src='star.png' id=star4 class=star>
+<img src='star.png' id=star5 class=star>
+<img src='star.png' id=star6 class=star>
+<img src='star.png' id=star7 class=star>
+<img src='star.png' id=star8 class=star>
+<img src='star.png' id=star9 class=star>
+<img src='star.png' id=star10 class=star>
+
+
+<div class=rocket id=rok2 >
+<img src='rocket.png' id=rocket>
+<img src='fire1.png' class=fire id="fire">
+
+</div>
+
+<div class=panel id=panel>....</div>
+
+
+<div class=apaksa>Don't close the window to complete this game!<br>
+This is absurd #010. Created by <a href="https://absurd.website" target="_blank"><font color="#ffffff">Absurd.website</font></a></div>
+</div>
+
+<br>
+<div class=starts id=starts>
+
+Welcome to the first real-time spaceflight simulator game:<br>
+<h1 style='color:#ed9815;'>TRIP TO MARS</h1>
+
+- You will need seven months (210 days) to complete it!<br><br>
+- Don't close the window to complete this game!<br><br>
+<!-- - You can buy a T-shirt as proof you completed the game!<br><br> -->
+
+<a href='javascript:aiziet();'><h2 style='color:#e500ff;'><u>START</u></h2></a>
+</div>
+
+
+<script>
+for (var i = 1; i < 11; i++) {
+vienreiz(i,1);
+}
+
+
+var myvar1=setInterval(firef, 100);
+
+function aiziet(){
+var b=document.getElementById("rok2");
+b.style.display="block";
+var b=document.getElementById("starts");
+b.style.display="none";
+var myvar2=setInterval(sekundes, 1000);
+}
+</script>
+</body>
+</html>
